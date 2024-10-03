@@ -1,0 +1,191 @@
+﻿@model EblueWorkPlan.Models.ViewModels.ProjectFormView;
+
+<partial name="_Sidebar2" />
+
+<h1>Research Project for: @Model.ProjectId</h1>
+
+
+<div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+        <div class="row g-3">
+
+
+            <form asp-action="ProjectDetails">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" id="projectId" asp-for="ProjectId" />
+                <div class="card">
+
+                    <div class="card-header">Project Template</div>
+
+
+                    <div class="card-body">
+
+                        <a class="btn btn-secondary " asp-route-id="@Model.ProjectId" asp-controller="Projects" asp-action="Print" target="_blank">Print</a></li>
+
+
+                        <div class="row">
+                            <div  class="col-12" >
+                                <label asp-for="Comment" class="control-label"></label>
+                                <textarea id="txtComment" asp-for="Comment" rows="3" class="form-control"></textarea>
+                                <span asp-validation-for="Comment" class="text-danger"></span>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div  class="col-12" >
+                                <label asp-for="UserRole" class="control-label"></label>
+                                <input id="txtRole" asp-for="UserRole" class="form-control">
+                                <span asp-validation-for="UserRole" class="text-danger"></span>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="card aprove-section">
+                            <input data-id="@Model.ProjectId" type="button" id="approve" value="Aprove" class="btn btn-success "  />
+                            <input data-id="@Model.ProjectId" type="button" id="reject" value="Reject" class="btn btn-danger " />
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="card-footer">
+
+                        <div class="form-group">
+                            <input type="submit" value="Back Home" class="btn btn-primary " asp-action="Index" asp-controller="Projects" />
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+        
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+                <div id="myapprove" class="toast">
+                    <div class="toast-header bg-success">
+                        <strong class="me-auto text-light">Update..</strong>
+                        <small>Just Now...</small>
+                        <button class="close" data-bs-dismiss="toast"> </button>
+
+
+                    </div>
+                    <div class="toast-body ">
+                        Approved!
+                    </div>
+                </div>
+            </div>
+
+
+
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+        <div id="myreject" class="toast">
+            <div class="toast-header bg-danger">
+                <strong class="me-auto text-light">Update..</strong>
+                <small>Just Now...</small>
+                <button class="close" data-bs-dismiss="toast"> </button>
+
+
+            </div>
+            <div class="toast-body ">
+                Rejected!
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    </div>
+</div>
+
+@section scripts{
+    <script>
+
+
+
+
+
+
+        $(function () {
+
+
+
+
+            $("#approve").click(function () {
+
+                let item = $(this).attr("data-id");
+                console.log(item)
+
+                
+
+               const params = {
+                    
+
+
+                    ProjectId: $('#projectId').val(),
+                    comment: $('#txtComment').val(),
+                    userRole: $('#txtRole').val(),
+                    
+                };
+                 $.ajax({
+                    type: "POST",
+                    url: '/Projects/PostApproveData',
+                    data: params,
+                    success: function () {
+                        alert('Entre');
+
+                    },
+                    dataType: 'json'
+                });
+
+
+                $('#myapprove').show();
+            });
+
+
+              $("#reject").click(function () {
+
+                let item = $(this).attr("data-id");
+                console.log(item)
+
+               const params = {
+
+                    
+
+
+                    ProjectId: $('#projectId').val(),
+                    Comment: $('#txtComment').val(),
+                    UserRole: $('#txtRole').val(),
+                };
+                 $.ajax({
+                    type: "POST",
+                    url: '/Projects/PostRejectData',
+                    data: params,
+                    success: function () {
+                        alert('Entre');
+
+                    },
+                    dataType: 'json'
+                });
+
+
+                $('#myreject').show();
+            });
+
+
+
+
+
+        });
+
+
+    </script>
+
+}
+
+

@@ -1,0 +1,630 @@
+﻿@model EblueWorkPlan.Models.ViewModels.ProjectFormView
+@{
+    ViewData["Title"] = "Page5";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<partial name="_Sidebar2" />
+
+<h1>Research Project for: @Model.ProjectNumber</h1>
+
+<h3>Scientist Page</h3>
+<br />
+
+<nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <button class="nav-link " id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" asp-action="ProjectList" asp-controller="Projects"><i class="fa-solid fa-1" style="color: #2267dd;"></i></button>
+        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" asp-action="Page2" asp-controller="Projects"><i class="fa-solid fa-2" style="color: #2267dd;"></i></button>
+        <button class="nav-link" id="nav-laboratory-tab" data-bs-toggle="tab" data-bs-target="#nav-laboratory" type="button" role="tab" aria-controls="nav-laboratory" aria-selected="false" asp-action="Page3" asp-controller="Projects"><i class="fa-solid fa-3" style="color: #2267dd;"></i></button>
+        <button class="nav-link " id="nav-analytical-tab" data-bs-toggle="tab" data-bs-target="#nav-analytical" type="button" role="tab" aria-controls="nav-analytical" aria-selected="false" asp-action="Page4" asp-controller="Projects"><i class="fa-solid fa-4" style="color: #2267dd;"></i></button>
+        <button class="nav-link active" id="nav-sciproject-tab" data-bs-toggle="tab" data-bs-target="#nav-sciproject" type="button" role="tab" aria-controls="nav-sciproject" aria-selected="false" asp-action="Page5" asp-controller="Projects"><i class="fa-solid fa-5" style="color: #2267dd;"></i></button>
+        <button class="nav-link" id="nav-otherpersonel-tab" data-bs-toggle="tab" data-bs-target="#nav-otherpersonel" type="button" role="tab" aria-controls="nav-otherpersonel" aria-selected="false" asp-action="Page6" asp-controller="Projects"><i class="fa-solid fa-6" style="color: #2267dd;"></i></button>
+        <button class="nav-link" id="nav-gradass-tab" data-bs-toggle="tab" data-bs-target="#nav-gradass" type="button" role="tab" aria-controls="nav-gradass" aria-selected="false" asp-action="Page7" asp-controller="Projects"><i class="fa-solid fa-7" style="color: #2267dd;"></i></button>
+        <button class="nav-link" id="nav-fund-tab" data-bs-toggle="tab" data-bs-target="#nav-fund" type="button" role="tab" aria-controls="nav-fund" aria-selected="false" asp-action="Page8" asp-controller="Projects"><i class="fa-solid fa-8" style="color: #2267dd;"></i></button>
+        <button class="nav-link" id="nav-budget-tab" data-bs-toggle="tab" data-bs-target="#nav-budget" type="button" role="tab" aria-controls="nav-budget" aria-selected="false" asp-action="Page9" asp-controller="Projects"><i class="fa-solid fa-9" style="color: #2267dd;"></i></button>
+        <button class="nav-link" id="nav-notes-tab" data-bs-toggle="tab" data-bs-target="#nav-notes" type="button" role="tab" aria-controls="nav-notes" aria-selected="false" asp-action="Page9" asp-controller="Projects"><i class="fa-solid fa-1" style="color: #2267dd;"></i><i class="fa-solid fa-0" style="color: #2267dd;"></i> </button>
+        <button class="nav-link " id="nav-adminnotes-tab" data-bs-toggle="tab" data-bs-target="#nav-adminnotes" type="button" role="tab" aria-controls="nav-adminnotes" aria-selected="false" asp-action="Page11" asp-controller="Projects"><i class="fa-solid fa-1" style="color: #2267dd;"></i><i class="fa-solid fa-1" style="color: #2267dd;"></i> </button>
+
+
+    </div>
+        </nav>
+
+        <div class="tab-content" id="nav-tabContent">
+
+    <div class="tab-pane fade show active" id="nav-sciproject" role="tabpanel" aria-labelledby="nav-sciproject-tab" tabindex="0">
+                <div class="row g-3">
+
+
+                    <form asp-action="Page5">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="card">
+
+                            <div class="card-header">Scientist Working in Project  </div>
+                    <input id="projectId" type="hidden" asp-for="ProjectId" />
+                            <input id="sciPId" type="hidden" />
+
+                            <div class="card-body">
+
+                                <div class="row">
+
+
+                                    <div class="form-group">
+                                <label class="control-label"> Name of Scientist </label>
+                                        <select id="rosterid" asp-for="RosterId" class="form-control" asp-items="ViewBag.rosterItems"></select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label asp-for="SciRolesId" class="control-label"></label>
+                                        <select id="scirolesId" asp-for="SciRolesId" class="form-control" asp-items="ViewBag.scirolesItems"></select>
+                                    </div>
+
+                                    
+                                    <div class="form-group">
+                                        <label asp-for="Credits" class="control-label"></label>
+                                <input id="credit" asp-for="Credits" class="form-control"  min="0.0000" step="0.0001" />
+                                        <span asp-validation-for="Credits" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Tr" class="control-label"></label>
+                                <input id="tr" asp-for="Tr" class="form-control" min="0.0000" step="0.0001"  />
+                                        <span asp-validation-for="Tr" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Ca" class="control-label"></label>
+                                <input id="ca" asp-for="Ca" class="form-control" min="0.0000" step="0.0001"  />
+                                        <span asp-validation-for="Ca" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Ah" class="control-label"></label>
+                                    <input id="ah" asp-for="Ah" class="form-control" min="0.0000" step="0.0001"  />
+                                        <span asp-validation-for="Ah" class="text-danger"></span>
+                                    </div>
+                                   
+                                    
+
+                                </div>
+
+                                <br />
+                                <div class="form-group">
+                                    <input type="submit" value="Add" class="btn btn-primary" id="btnSubmit" />
+                                    <input id="btnSave" type="button" value="Save" class="btn btn-success btn-save" style="display:none;" />
+                                </div>
+
+                            </div>
+
+
+                            <div class="card-footer">
+                                
+                                <div class="btn btn-primary col align-content-center"><a asp-action="Page4" asp-controller="Projects" asp-route-id="@Model.ProjectId" style="text-decoration:none; color:white;">Back</a></div>
+
+                                
+
+                               
+                                <div class="btn btn-primary col align-content-end"><a  asp-action="Page6" asp-controller="Projects" asp-route-id="@Model.ProjectId" style="text-decoration:none; color:white;">Next</a></div>
+
+                            </div>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+
+            <br />
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+             
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Roster)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.SciRolesId)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Credits)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tr)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ca)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ah)
+                </th>
+                
+             
+                
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.sciProjects)
+            {
+                <tr>
+                   
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Roster.RosterName)
+                    </td>
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SciRoles.SciRoleName)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Credits)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tr)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ca)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ah)
+                    </td>
+                    
+                    
+                    
+                    <td>
+                        <div class="row">
+                            <div class="col-4">
+                                <button data-id="@item.SciId| @item.ProjectId|@item.RosterId|@item.Credits|@item.Tr|@item.Ca|@item.Ah|@item.SciRolesId"
+                                    class="btn  btn-success modify">
+                                    Modify
+                                </button>
+
+                            </div>
+                            
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+        </div>
+
+
+
+
+
+@section scripts{
+    <script>
+
+        $(function () {
+
+            
+
+
+
+            $(".modify").click(function () {
+                $("#btnSubmit").hide();
+                $("#btnSave").show();
+
+
+
+                let item = $(this).attr("data-id");
+
+                let campos = item.split("|",8 );
+
+
+
+                $('#sciPId').val(campos[0]);
+                $('#rosterid').val(campos[2]);
+                $('#credit').val(campos[3]);
+                $('#tr').val(campos[4]);
+                $('#ca').val(campos[5]);
+                $('#ah').val(campos[6]);
+                $('#projectId').val(campos[1]);
+                $('#scirolesId').val(campos[7]);
+            });
+
+
+
+            $('#btnSave').click(function () {
+                $("#btnSave").hide();
+                $("#btnSubmit").show(); 
+
+                const params = {
+                    sciPId: $('#sciPId').val(),
+                    rosterid: $('#rosterid').val(),
+                    credit: $('#credit').val(),
+                    tr: $('#tr').val(),
+                    ca: $('#ca').val(),
+                    ah: $('#ah').val(),
+                    projectId: $('#projectId').val(),
+                    SciRolesId: $('#scirolesId').val(),
+                };
+
+
+                console.log(params);
+
+
+                $.ajax({
+                    type: "POST",
+                    url: '/Projects/PostPage5Data',
+                    data: params,
+                    success: function (response) {
+                        if (response.redirect) {
+
+                            window.location.href = response.url;
+
+                        } else {
+
+
+                            alert('No funciona..');
+                        }
+                    },
+                    dataType: 'json'
+                });
+                $('#formClr').find('input[type=text], input[type=email], textarea').val('');
+
+            });
+
+
+            $("#nav-home-tab").click(function () {
+
+                const params = {
+                    ProjectId: $("#projectId").val()
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: '/Projects/RedirectPL',
+                    data: params,
+                    success: function (response) {
+                        if (response.redirect) {
+
+                            window.location.href = response.url;
+
+                        } else {
+
+
+                            alert('No funciona..');
+                        }
+
+                    },
+                    dataType: 'json'
+
+
+
+                });
+
+            });
+
+
+            $("#nav-profile-tab").click(function () {
+
+                const params = {
+                    ProjectId: $("#projectId").val()
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: '/Projects/RedirectP2',
+                    data: params,
+                    success: function (response) {
+                        if (response.redirect) {
+
+                            window.location.href = response.url;
+
+                        } else {
+
+
+                            alert('No funciona..');
+                        }
+
+                    },
+                    dataType: 'json'
+
+
+
+                });
+
+            });
+
+
+            $("#nav-laboratory-tab").click(function () {
+
+                const params = {
+                    ProjectId: $("#projectId").val()
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: '/Projects/RedirectP3',
+                    data: params,
+                    success: function (response) {
+                        if (response.redirect) {
+
+                            window.location.href = response.url;
+
+                        } else {
+
+
+                            alert('No funciona..');
+                        }
+
+                    },
+                    dataType: 'json'
+
+
+
+                });
+
+            });
+
+
+            $("#nav-analytical-tab").click(function () {
+
+                const params = {
+                    ProjectId: $("#projectId").val()
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: '/Projects/RedirectP4',
+                    data: params,
+                    success: function (response) {
+                        if (response.redirect) {
+
+                            window.location.href = response.url;
+
+                        } else {
+
+
+                            alert('No funciona..');
+                        }
+
+                    },
+                    dataType: 'json'
+
+
+
+                });
+
+            });
+
+            $("#nav-sciproject-tab").click(function () {
+
+                const params = {
+                    ProjectId: $("#projectId").val()
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: '/Projects/RedirectP5',
+                    data: params,
+                    success: function (response) {
+                        if (response.redirect) {
+
+                            window.location.href = response.url;
+
+                        } else {
+
+
+                            alert('No funciona..');
+                        }
+
+                    },
+                    dataType: 'json'
+
+
+
+                });
+
+            });
+
+
+
+            $("#nav-otherpersonel-tab").click(function () {
+
+                const params = {
+                    ProjectId: $("#projectId").val()
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: '/Projects/RedirectP6',
+                    data: params,
+                    success: function (response) {
+                        if (response.redirect) {
+
+                            window.location.href = response.url;
+
+                        } else {
+
+
+                            alert('No funciona..');
+                        }
+
+                    },
+                    dataType: 'json'
+
+
+
+                });
+
+            });
+
+
+
+
+            $("#nav-gradass-tab").click(function () {
+
+                const params = {
+                    ProjectId: $("#projectId").val()
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: '/Projects/RedirectP7',
+                    data: params,
+                    success: function (response) {
+                        if (response.redirect) {
+
+                            window.location.href = response.url;
+
+                        } else {
+
+
+                            alert('No funciona..');
+                        }
+
+                    },
+                    dataType: 'json'
+
+
+
+                });
+
+            });
+
+
+
+
+
+            $("#nav-fund-tab").click(function () {
+
+                const params = {
+                    ProjectId: $("#projectId").val()
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: '/Projects/RedirectP8',
+                    data: params,
+                    success: function (response) {
+                        if (response.redirect) {
+
+                            window.location.href = response.url;
+
+                        } else {
+
+
+                            alert('No funciona..');
+                        }
+
+                    },
+                    dataType: 'json'
+
+
+
+                });
+
+            });
+
+
+
+            $("#nav-budget-tab").click(function () {
+
+                const params = {
+                    ProjectId: $("#projectId").val()
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: '/Projects/RedirectP9',
+                    data: params,
+                    success: function (response) {
+                        if (response.redirect) {
+
+                            window.location.href = response.url;
+
+                        } else {
+
+
+                            alert('No funciona..');
+                        }
+
+                    },
+                    dataType: 'json'
+
+
+
+                });
+
+            });
+
+
+
+
+            $("#nav-notes-tab").click(function () {
+
+                const params = {
+                    ProjectId: $("#projectId").val()
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: '/Projects/RedirectP10',
+                    data: params,
+                    success: function (response) {
+                        if (response.redirect) {
+
+                            window.location.href = response.url;
+
+                        } else {
+
+
+                            alert('No funciona..');
+                        }
+
+                    },
+                    dataType: 'json'
+
+
+
+                });
+
+            });
+
+
+
+
+
+            $("#nav-adminnotes-tab").click(function () {
+
+                const params = {
+                    ProjectId: $("#projectId").val()
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: '/Projects/RedirectP11',
+                    data: params,
+                    success: function (response) {
+                        if (response.redirect) {
+
+                            window.location.href = response.url;
+
+                        } else {
+
+
+                            alert('No funciona..');
+                        }
+
+                    },
+                    dataType: 'json'
+
+
+
+                });
+
+            });
+
+
+        });
+
+
+
+    </script>
+
+}

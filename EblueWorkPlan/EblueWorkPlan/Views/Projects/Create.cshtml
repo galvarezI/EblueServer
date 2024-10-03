@@ -1,0 +1,181 @@
+﻿@using EblueWorkPlan.Models.ViewModels
+@model ProjectViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    
+}
+<partial name="_Sidebar2" />
+
+
+<h1>Create</h1>
+<br />
+<h4>Project</h4>
+<div class="row g-3">
+
+
+    <form asp-action="Create" onsubmit="">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+     
+        <div class="card">
+
+            <div class="card-header">Create Project</div>
+
+
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-12">
+                        <label asp-for="ProjectTitle" class="control-label"></label>
+                        <input asp-for="ProjectTitle" class="form-control" />
+                        <span asp-validation-for="ProjectTitle" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-6">
+                        
+                        <label asp-for="ProjectNumber" class="control-label"></label>
+                        <div class="badge bg-danger text-wrap text-white">
+                            Mandatory
+                        </div>
+
+                        <input asp-for="ProjectNumber" class="form-control" />
+                       
+                        <span asp-validation-for="ProjectNumber" class="text-danger"></span>
+
+
+
+                    </div>
+
+
+
+                    <div class="col-6">
+                        <label asp-for="RosterId" class="control-label"></label>
+                       
+                        <select asp-for="RosterId" class="form-control" asp-items="ViewBag.rosterItems"></select>
+                       
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label asp-for="DepartmentId" class="control-label"></label>
+                    <select asp-for="DepartmentId" class="form-control" asp-items="ViewBag.departmentItems"></select>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="CommId" class="control-label"></label>
+                    <select asp-for="CommId" class="form-control" asp-items="ViewBag.commodityItems"></select>
+
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ProgramAreaId" class="control-label"></label>
+                    <select asp-for="ProgramAreaId" class="form-control" asp-items="ViewBag.programAreaItems"></select>
+                        
+
+                    
+
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="SubStationId" class="control-label"></label>
+                   
+                    <select  id="subStation" asp-for="SubStationSelectedArray" multiple class="chosen-select form-control"  asp-items="ViewBag.substationItems" data-placeholder="Select multiple options..."></select>
+
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="FiscalYearId" class="control-label"></label>
+                    <select asp-for="FiscalYearId" class="form-control" asp-items="ViewBag.fiscalyearItems"></select>
+                    
+
+
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="ContractNumber" class="control-label"></label>
+                    <input asp-for="ContractNumber" class="form-control" />
+                    <span asp-validation-for="ContractNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Orcid" class="control-label"></label>
+                    <input asp-for="Orcid" class="form-control" />
+                    <span asp-validation-for="Orcid" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="FundTypeId" class="control-label"></label>
+                    <select asp-for="FundTypeId" class="form-control" id="selectfund" asp-items="ViewBag.fundtypeItems"></select>
+
+                    <label asp-for ="OtherFundtype" class="control-label">
+                        If you select "OTHER"
+                    </label>
+
+                    <input asp-for="OtherFundtype" type="text" id="otherfundtype" class="form-control" />
+                </div>
+              
+
+                <div class="form-group">
+                    <label asp-for="PorganizationsId" class="control-label"></label>
+  
+                    <select asp-for="PorganizationsId" class="form-control" asp-items="ViewBag.porganizationItem"></select>
+
+                </div>
+
+
+            </div>
+
+            
+
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-primary" onclick="alerftForm" />
+                </div>
+           
+
+        </div>
+    </form>
+</div>
+
+
+
+
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+
+   <script>
+       $(document).ready(function (){
+        
+            $("#subStation").chosen();
+       
+       });
+
+
+        document.getElementById("selectfund").addEventListener("change", function(){
+            const selectedId = this.value;
+
+            if(selectedId === 2 || selectedId === 9 ){
+                var labelElement = document.createElement("label")
+                var inputElement = document.createElement("input")
+
+                labelElement.className = "control-label";
+                inputElement.className = "form-control";
+
+
+            }
+        
+        
+        })
+   </script>
+        
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

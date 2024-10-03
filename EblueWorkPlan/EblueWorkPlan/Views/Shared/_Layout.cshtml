@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EblueWorkPlan</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/EblueWorkPlan.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/sidebar.css" asp-append-version="true" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/2.1.4/css/dataTables.dataTables.min.css">
+    <script src="https://kit.fontawesome.com/40751fa63f.js" crossorigin="anonymous"></script>
+    <link href="~/css/chosen/chosen.min.css" rel="stylesheet" />
+    @await RenderSectionAsync("Styles", required: false)
+
+</head>
+<body>
+   
+        
+
+            
+
+   
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            
+        </div>
+    </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+        <script src="//cdn.datatables.net/2.1.4/js/dataTables.min.js"></script>
+        <script src="~/lib/chosen/chosen.jquery.js"></script>
+        <script src="~/lib/chosen/chosen.jquery.min.js"></script>
+    <script>
+         $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+
+          
+        });
+
+        const userAunth = '@User.Identity!.IsAuthenticated' === 'True';
+        const cantidadSegundosDeslog = 3 * 1000;
+
+        if(userAunth){
+            function timerInactivo(){
+
+
+                let timer;
+                document.onmousemove = resetTimer;
+                document.onkeypress = resetearTimer
+
+                function resetTimer(){
+                
+                    clearTimeout(timer);
+                    timer = setTimeout(logout, cantidadSegundosDeslog)
+
+
+                }
+
+                function logout(){
+                
+                    const btnLogout = document.getElementById('btn-logout');
+                    btnLogout.click();
+
+                }
+
+            }
+        
+        
+        }
+
+        
+    </script>
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
